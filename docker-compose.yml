@@ -1,0 +1,8 @@
+services:
+  sqlite:
+    image: nouchka/sqlite3:latest
+    platform: linux/amd64
+    container_name: sqlite_northwind
+    volumes:
+      - ./data:/data
+    tty: true
