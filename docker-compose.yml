@@ -5,4 +5,5 @@ services:
     container_name: sqlite_northwind
     volumes:
       - ./data:/data
+      - ./query:/query
     tty: true

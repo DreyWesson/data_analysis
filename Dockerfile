@@ -1,9 +1,16 @@
 FROM arm64v8/ubuntu:latest
 
+# Install SQLite
 RUN apt-get update && apt-get install -y sqlite3
 
-COPY data/northwind_database.db /data/northwind_database.db
+# Copy all necessary files into the container
+COPY . /data
 
+# Set working directory
 WORKDIR /data
 
-CMD ["sqlite3", "/data/northwind_database.db"]
+# Make the initialization script executable
+RUN chmod +x init_sqlite.sh
+
+# Run the initialization script and then start the SQLite shell
+ENTRYPOINT ["/data/init_sqlite.sh"]
